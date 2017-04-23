@@ -40,6 +40,16 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
         for (String path: pref.split(",")) {
             preInjectionFileNames.add(path.trim());
         }
+        
+        String allowed_url = webView.getPreferences().getString("CRIAllowedUrls", "");
+        for (String path: pref.split(",")) {
+            if(super.webView.get){
+            
+            }
+            preInjectionFileNames.add(path.trim());
+        }
+        
+        
         promptInterval = webView.getPreferences().getInteger("CRIPageLoadPromptInterval", 10);
 
         final Activity activity = super.cordova.getActivity();
@@ -113,6 +123,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
     }
 
     private void injectCordova() {
+ 
         List<String> jsPaths = new ArrayList<String>();
         for (String path: preInjectionFileNames) {
             jsPaths.add(path);
